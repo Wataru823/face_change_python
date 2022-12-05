@@ -8,12 +8,6 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="./css/bootstrap.min.css" />
-  <!-- <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous"
-    /> -->
   <title>画像処理アプリ</title>
 </head>
 
@@ -58,10 +52,8 @@
   <section class="top py-5 text-white">
     <div class="container py-5">
       <h1 class="text-center display-4 font-weight-bold">顔写真の匿名化</h1>
-      <p class="text-center container">
-        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-        texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-        texttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+      <p class="text-center container pl-5 pr-5 pt-3">
+        SNSに顔を含む写真を投稿する際に、顔を隠すためのスタンプを貼るという面倒な作業を自動化したいというニーズから生まれたものです。
       </p>
     </div>
     <!-- /.container -->
@@ -74,8 +66,8 @@
         <div class="col-md-6 mb-5">
           <h2>ABOUT</h2>
           <p>
-            Quickly design and customize responsive mobile-first sites with
-            Bootstrap, the world’s most popular
+            The idea came from the need to automate the tedious process of applying stamps to hide faces
+            when posting photos that include faces on social networking sites.
           </p>
           <button class="btn btn-info btn-lg">Read More</button>
         </div>
@@ -96,7 +88,7 @@
       <h2>EXAMPLE</h2>
     </div>
     <div class="container row py-5 ml-5">
-      <div class="col-sm-6">
+      <div class="card-deck m-auto pb-5">
         <div class="card" style="width: 18rem">
           <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180" src="../input/face.jpg"
             preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
@@ -110,38 +102,52 @@
               s3に入れた画像を表示します。
             </p>
           </div>
-          <!-- <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul> -->
-          <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
         </div>
       </div>
-      <div class="card" style="width: 18rem">
-        <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180" src="../output/emoji/blush_face.jpg"
-          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#868e96" />
-        <!-- <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text> -->
-        </img>
-        <div class="card-body">
-          <h5 class="card-title">Output 画像</h5>
-          <p class="card-text">
-            Input画像からAWS Rekognitionを用いて顔を認識し、スタンプを押した画像を表示します。
-          </p>
+      <div class="card-deck">
+        <div class="card" style="width: 18rem">
+          <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180"
+            src="../output/emoji/blush_face.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+            aria-label="Placeholder: Image cap">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96" />
+          <!-- <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text> -->
+          </img>
+          <div class="card-body">
+            <h5 class="card-title">Emoji 画像</h5>
+            <p class="card-text">
+              Input画像からAWS Rekognitionを用いて顔を認識し、スタンプを押した画像を表示します。
+            </p>
+          </div>
         </div>
-        <!-- <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul> -->
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+        <div class="card" style="width: 18rem">
+          <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180"
+            src="../output/glass/glass_face.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+            aria-label="Placeholder: Image cap">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96" />
+          <!-- <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text> -->
+          </img>
+          <div class="card-body">
+            <h5 class="card-title">Emoji 画像</h5>
+            <p class="card-text">
+              Input画像からAWS Rekognitionを用いて顔を認識し、スタンプを押した画像を表示します。
+            </p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem">
+          <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180"
+            src="../output/mozaiku/mozaiku_face.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+            aria-label="Placeholder: Image cap">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96" />
+          </img>
+          <div class="card-body">
+            <h5 class="card-title">Mozaiku 画像</h5>
+            <p class="card-text">
+              Input画像からAWS Rekognitionを用いて顔を認識し、スタンプを押した画像を表示します。
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -150,14 +156,13 @@
 
   <section class="data py-5">
     <div class="table pl-5 pr-5">
-      <h2 class="mb-3">Rekogniton data</h2>
+      <h2 class="mb-3">Rekogniton Data</h2>
       <table class="table table-striped table-bordered table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Type</th>
             <th scope="col">Value</th>
-            <!-- <th scope="col">Handle</th> -->
           </tr>
         </thead>
         <tbody>
@@ -165,132 +170,111 @@
             <th scope="row">1</th>
             <td>Emotion</td>
             <td>HAPPY</td>
-            <!-- <td>@mdo</td> -->
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Gender</td>
             <td>Male</td>
-            <!-- <td>@fat</td> -->
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>AgeRange</td>
             <td>{'High': 21, 'Low': 13}</td>
-            <!-- <td>@twitter</td> -->
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Smile</td>
             <td>96.2359390258789 %</td>
-            <!-- <td>@twitter</td> -->
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section class="rekognition-demo py-5">
+  <section class="rekognition-demo mb-5">
     <div class="ml-5">
       <h2 class="mb-4">DEMO</h2>
     </div>
     <div class="container row ml-5">
-      <div class="col-sm-6">
+      <div class="card-deck m-auto pb-4">
         <div class="card" style="width: 18rem">
           <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180" src="../input/image.jpg"
             preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
           <title>Placeholder</title>
           <rect width="100%" height="100%" fill="#868e96" />
-          <!-- <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text> -->
           </img>
           <div class="card-body">
             <h5 class="card-title">Input 画像</h5>
-            <!-- <p class="card-text">
-              s3に入れた画像を表示します。
-            </p> -->
           </div>
-          <!-- <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul> -->
-          <!-- <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div> -->
+        </div>
+        </div>
+        <div class="card-deck">
+        <div class="card" style="width: 18rem">
+          <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180"
+            src="../output/emoji/blush_image.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+            aria-label="Placeholder: Image cap">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96" />
+          </img>
+          <div class="card-body">
+            <h5 class="card-title">Emoji 画像</h5>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem">
+          <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180"
+            src="../output/glass/glass_image.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+            aria-label="Placeholder: Image cap">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96" />
+          </img>
+          <div class="card-body">
+            <h5 class="card-title">Mozaiku 画像</h5>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem">
+          <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180"
+            src="../output/mozaiku/mozaiku_image.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+            aria-label="Placeholder: Image cap">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96" />
+          </img>
+          <div class="card-body">
+            <h5 class="card-title">Mozaiku 画像</h5>
+          </div>
         </div>
       </div>
-      <div class="card" style="width: 18rem">
-        <img class="bd-placeholder-img card-img-top img-fit" width="100%" height="180" src="../output/emoji/blush_image.jpg"
-          preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap">
-        <title>Placeholder</title>
-        <rect width="100%" height="100%" fill="#868e96" />
-        <!-- <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text> -->
-        </img>
-        <div class="card-body">
-          <h5 class="card-title">Output 画像</h5>
-          <!-- <p class="card-text">
-            Input画像からAWS Rekognitionを用いて顔を認識し、スタンプを押した画像を表示します。
-          </p> -->
-        </div>
-        <!-- <ul class="list-group list-group-flush">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul> -->
-        <!-- <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div> -->
-      </div>
     </div>
-    </div>
+  </div>
   </section>
 
 
   <section class="service bg-light py-5">
     <div class="container">
-      <h2 class="text-center mb-3">Service</h2>
+      <h2 class="text-center mb-3">Other Emoji Types</h2>
       <div class="card-deck">
         <div class="card">
-          <img src="./frontend/img/beginner.png" class="card-img-top" alt="..." />
+          <img src="../output/emoji/grinning_face.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Beginner</h5>
-            <p class="card-text">
-              This is a longer card with supporting text below as a natural
-              container-in to additional content. This content is a little bit
-              longer.
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
+            <h5 class="card-title">Grinning</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../output/emoji/heart_eyes_face.jpg" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">heart_eyes</h5>
+          </div>
+        </div>
+        <div class="card">
+          <img src="../output/emoji/laughing_face.jpg" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">laughing</h5>
             </p>
           </div>
         </div>
         <div class="card">
-          <img src="./frontend/img/standard.png" class="card-img-top" alt="..." />
+          <img src="../output/emoji/pleading_face_face.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
-            <h5 class="card-title">Standard</h5>
-            <p class="card-text">
-              This card has supporting text below as a natural container-in to
-              additional content.
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./frontend/img/advance.png" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Advance</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              container-in to additional content. This card has even longer
-              content than the first to show that equal height action.
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
+            <h5 class="card-title">pleading</h5>
           </div>
         </div>
       </div>
@@ -397,31 +381,13 @@
   </footer>
 
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
-  <!-- <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-      crossorigin="anonymous"
-    ></script> -->
 </body>
 
 </html>
 
 <style>
-  @charset "UTF-8";
-
   .top {
     background-image: url(./img/top.jpeg);
     background-size: cover;
