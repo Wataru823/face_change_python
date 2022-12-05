@@ -51,7 +51,7 @@
 
   <section class="top py-5 text-white">
     <div class="container py-5">
-      <h1 class="text-center display-4 font-weight-bold">顔写真の匿名化</h1>
+      <h1 class="text-center display-4 font-weight-bold sp">顔写真の匿名化</h1>
       <p class="text-center container pl-5 pr-5 pt-3">
         SNSに顔を含む写真を投稿する際に、顔を隠すためのスタンプを貼るという面倒な作業を自動化したいというニーズから生まれたものです。
       </p>
@@ -155,8 +155,8 @@
   </section>
 
   <section class="data py-5">
-    <div class="container">
-      <div class="table pl-5 pr-5">
+    <div class="container m-auto">
+      <div class="table">
         <h2 class="mb-3">Rekogniton Data</h2>
         <table class="table table-striped table-bordered table-hover">
           <thead>
@@ -250,9 +250,9 @@
 
 
   <section class="service bg-light py-5">
-    <div class="container">
+    <div class="container m-auto">
       <h2 class="text-center mb-3">Other Emoji Types</h2>
-      <div class="card-deck">
+      <div class="card-deck m-4">
         <div class="card">
           <img src="../output/emoji/grinning_face.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
@@ -285,9 +285,9 @@
   <!-- /.service -->
 
   <section class="plans py-5">
-    <h2 class="mb-3 text-center"></h2>
-    <div class="container">
-      <div class="row row-cols-1 row-cols-md-3">
+    <h2 class="mb-3 text-center">Price</h2>
+    <div class="container m-auto">
+      <div class="row">
         <div class="col mb-4">
           <div class="card">
             <div class="card-body">
@@ -296,10 +296,10 @@
                 <li class="list-group-item display-4 text-center list-group-item-primary">
                   $25
                 </li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+                <li class="list-group-item">絵文字スタンプのみ</li>
+                <li class="list-group-item">1年間有効 (30枚/月まで)</li>
+                <li class="list-group-item">ダウンロード機能なし</li>
+                <li class="list-group-item">顔比較・顔認識情報なし</li>
               </ul>
             </div>
           </div>
@@ -312,10 +312,10 @@
                 <li class="list-group-item display-4 text-center list-group-item-primary">
                   $40
                 </li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+                <li class="list-group-item">絵文字・サングラスのみ</li>
+                <li class="list-group-item">1年間有効 (100枚/月まで)</li>
+                <li class="list-group-item">ダウンロード機能あり</li>
+                <li class="list-group-item">顔比較・顔認識情報なし</li>
               </ul>
             </div>
           </div>
@@ -328,10 +328,10 @@
                 <li class="list-group-item display-4 text-center list-group-item-primary">
                   $70
                 </li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+                <li class="list-group-item">全ての種類使い放題</li>
+                <li class="list-group-item">1年間有効 (枚数無制限)</li>
+                <li class="list-group-item">ダウンロード機能あり</li>
+                <li class="list-group-item">顔比較・顔認識情報あり</li>
               </ul>
             </div>
           </div>
@@ -396,5 +396,12 @@
 
   .img-fit {
     object-fit: cover;
+  }
+
+  @media screen and (max-width: 520px) {
+  /* 960px以下で適用させたいcssを記述していく */
+    .sp {
+      font-size: 40px;
+    }
   }
 </style>
