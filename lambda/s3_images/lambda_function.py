@@ -41,7 +41,7 @@ def lambda_handler(event, context):
             input_upload_path = '/tmp/input-{}'.format(tmpkey)
             emoji_upload_path = '/tmp/emoji-{}'.format(tmpkey)
             mozaiku_upload_path = '/tmp/mozaiku-{}'.format(tmpkey)
-            output_emoji.save(input_upload_path)
+            image.save(input_upload_path)
             output_emoji.save(emoji_upload_path)
             output_mozaiku.save(mozaiku_upload_path)
             s3_client = boto3.client('s3')
