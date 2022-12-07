@@ -83,6 +83,13 @@ def draw_emoji(label: dict, output_emoji: Image.Image, emoji_image: Image.Image)
     output_emoji.paste(emoji_image, (left, top), emoji_image)
 
 class Eye:
+    """目の情報を取得し、描画するクラス
+
+    Attributes:
+        boxes (list): 目,眉毛,鼻の位置などが含まれるデータ
+
+    """
+
     def __init__(self, label: dict):
         """Rekognitionデータから目の情報を取得
 
@@ -129,11 +136,11 @@ class Eye:
         eye_left_left -= margin * 2
         eye_right_right += margin * 2
 
-        imcopy = output_mozaiku.copy() #もとの画像のコピーをとる
-        imcut = imcopy.crop((eye_left_left, eye_top, eye_right_right, eye_bottom)) #目の部分を切り取り
+        imcopy = output_mozaiku.copy()
+        imcut = imcopy.crop((eye_left_left, eye_top, eye_right_right, eye_bottom))
         mozaiku_size = 4
-        gimg = imcut.resize([mozaiku_size, mozaiku_size]).resize(imcut.size) #目の部分にモザイク処理
-        output_mozaiku.paste(gimg, (eye_left_left, eye_top)) #もとの画像にモザイクをかけた画像をペースト
+        gimg = imcut.resize([mozaiku_size, mozaiku_size]).resize(imcut.size)
+        output_mozaiku.paste(gimg, (eye_left_left, eye_top))
 
 
     def draw_glass(self, output_glass: Image.Image, glass_image: Image.Image):
