@@ -32,9 +32,10 @@ def lambda_handler(event, context):
 
             for label in client.labels['FaceDetails']:
                 draw_emoji(label, output_emoji, emoji_image)
-                eye = Eye(label)
-                eye.draw_glass(output_glass, glass_image)
-                eye.draw_mozaiku(output_mozaiku)
+                glass = Eye(label, output_glass)
+                glass.draw_glass(glass_image)
+                mozaiku = Eye(label, output_mozaiku)
+                mozaiku.draw_mozaiku()
 
             tmpkey = client.image_path.replace('/', '')
             input_upload_path = '/tmp/input-{}'.format(tmpkey)
@@ -85,91 +86,82 @@ class Eye:
     """目の情報を取得し、描画するクラス
 
     Attributes:
-        boxes (list): 目,眉毛,鼻の位置などが含まれるデータ
+        eye_left_left (float): 左目の左端. x座標
+        eye_right_right (float): 右目の右端. x座標
+        eye_top (float): 両目の上端. y座標
+        eye_bottom (float): 両目の下端. y座標
 
     """
 
-    def __init__(self, label: dict):
-        """Rekognitionデータから目の情報を取得
+    def __init__(self, label: dict, output_img: Image.Image):
+        """Rekognitionデータから目の情報を初期化
 
         Args:
-            label (dict): Rekognitionデータ
+            label (dict): Rekognitionのfaceデータ
+            output_img (Image.Image): 描画する画像
 
         """
 
-        self.boxes = label['Landmarks'] # 目なら'Landmarks'を指定
+        self.output_img = output_img
+        imgWidth, imgHeight = output_img.size
+        landmarks = label['Landmarks']
 
-        for box in self.boxes:
-            if box['Type'] == 'leftEyeUp':
-                self.eye_left_top = box['Y']
-            if box['Type'] == 'leftEyeDown':
-                self.eye_left_bottom = box['Y']
-            if box['Type'] == 'rightEyeUp':
-                self.eye_right_top = box['Y']
-            if box['Type'] == 'rightEyeDown':
-                self.eye_right_bottom = box['Y']
-            if box['Type'] == 'leftEyeLeft':
-                self.eye_left_left = box['X']
-            if box['Type'] == 'rightEyeRight':
-                self.eye_right_right = box['X']
+        for landmark in landmarks:
+            if landmark['Type'] == 'leftEyeUp':
+                eye_left_top = int(landmark['Y'] * imgHeight)
+            if landmark['Type'] == 'leftEyeDown':
+                eye_left_bottom = int(landmark['Y'] * imgHeight)
+            if landmark['Type'] == 'rightEyeUp':
+                eye_right_top = int(landmark['Y'] * imgHeight)
+            if landmark['Type'] == 'rightEyeDown':
+                eye_right_bottom = int(landmark['Y'] * imgHeight)
+            if landmark['Type'] == 'leftEyeLeft':
+                self.eye_left_left = int(landmark['X'] * imgWidth)
+            if landmark['Type'] == 'rightEyeRight':
+                self.eye_right_right = int(landmark['X'] * imgWidth)
 
-    def draw_mozaiku(self, output_mozaiku: Image.Image):
+        self.eye_top = min(eye_left_top, eye_right_top)
+        self.eye_bottom = max(eye_left_bottom, eye_right_bottom)
+
+    def draw_mozaiku(self):
         """画像にモザイクを描画する関数
-
-        Args:
-            output_mozaiku (Image.Image): 出力する画像
-
         """
-
-        imgWidth, imgHeight = output_mozaiku.size
-
-        eye_top = int(min(self.eye_left_top, self.eye_right_top) * imgHeight)
-        eye_bottom = int(max(self.eye_left_bottom, self.eye_right_bottom) * imgWidth)
-        eye_left_left = int(self.eye_left_left * imgWidth)
-        eye_right_right = int(self.eye_right_right * imgWidth)
 
         # モザイク範囲を少し広げる
-        margin = (eye_bottom - eye_top) * 1
-        eye_top -= margin
-        eye_bottom += int(margin * 1.5)
-        eye_left_left -= margin * 2
-        eye_right_right += margin * 2
+        margin = (self.eye_bottom - self.eye_top) * 1
+        self.eye_top -= margin
+        self.eye_bottom += int(margin * 1.5)
+        self.eye_left_left -= margin * 2
+        self.eye_right_right += margin * 2
 
-        imcopy = output_mozaiku.copy()
-        imcut = imcopy.crop((eye_left_left, eye_top, eye_right_right, eye_bottom))
+        imcopy = self.output_img.copy()
+        imcut = imcopy.crop((self.eye_left_left, self.eye_top, self.eye_right_right, self.eye_bottom))
         mozaiku_size = 4
         gimg = imcut.resize([mozaiku_size, mozaiku_size]).resize(imcut.size)
-        output_mozaiku.paste(gimg, (eye_left_left, eye_top))
+        self.output_img.paste(gimg, (self.eye_left_left, self.eye_top))
 
 
-    def draw_glass(self, output_glass: Image.Image, glass_image: Image.Image):
+    def draw_glass(self, glass_image: Image.Image):
         """画像にサングラスを描画する関数
 
         Args:
-            output_glass (Image.Image): 出力する画像
             glass_image (Image.Image): 描画する際に用いるサングラスの画像
 
         """
 
-        imgWidth, imgHeight = output_glass.size
         glassWidth, glassHeight = glass_image.size
 
-        eye_top = int(min(self.eye_left_top, self.eye_right_top) * imgHeight)
-        eye_bottom = int(max(self.eye_left_bottom, self.eye_right_bottom) * imgWidth)
-        eye_left_left = int(self.eye_left_left * imgWidth)
-        eye_right_right = int(self.eye_right_right * imgWidth)
-
         # サングラスの範囲を少し広げる
-        margin = (eye_bottom - eye_top) * 2
-        eye_top -= margin
-        eye_left_left -= margin * 2
-        eye_right_right += margin * 2
+        margin = (self.eye_bottom - self.eye_top) * 2
+        self.eye_top -= margin
+        self.eye_left_left -= margin * 2
+        self.eye_right_right += margin * 2
 
-        glass_width = (eye_right_right - eye_left_left)
+        glass_width = (self.eye_right_right - self.eye_left_left)
         glass_height = int(glass_width * (glassHeight / glassWidth))
 
         glass_image = glass_image.resize((glass_width, glass_height))
-        output_glass.paste(glass_image, (eye_left_left, eye_top), glass_image)
+        self.output_img.paste(glass_image, (self.eye_left_left, self.eye_top), glass_image)
 
 
 class Client:
@@ -185,7 +177,7 @@ class Client:
     """
 
     def __init__(self, event: dict):
-        """clientで使う値を取得
+        """clientで使う値を初期化
 
         Args:
             event (dict): s3にinputされた際に発生するイベントデータ
