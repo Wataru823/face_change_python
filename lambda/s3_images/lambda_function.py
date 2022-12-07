@@ -23,7 +23,6 @@ def lambda_handler(event, context):
     image = client.get_s3_image(client.image_path)
     emoji_image = client.get_s3_image(emoji_file_path)
     glass_image = client.get_s3_image(glass_file_path)
-    labels = client.get_rekognition_labels()
 
     for r in client.response['Contents']:
         if r['Key'] == client.image_path:
@@ -31,7 +30,7 @@ def lambda_handler(event, context):
             output_glass = image.copy()
             output_mozaiku = image.copy()
 
-            for label in labels['FaceDetails']:
+            for label in client.labels['FaceDetails']:
                 draw_emoji(label, output_emoji, emoji_image)
                 eye = Eye(label)
                 eye.draw_glass(output_glass, glass_image)
@@ -180,8 +179,8 @@ class Client:
         input_bucket (str): input用のバケット名
         image_path (str): input用のバケットにputされた画像のパス
         response (dict): s3のデータ
-        rekognition : Rekognitionのクライアント
         s3_resource : S3のリソース
+        labels (dict): Rekognitionのfaceデータ
 
     """
 
@@ -195,31 +194,22 @@ class Client:
 
         self.input_bucket = event['Records'][0]['s3']['bucket']['name']
         self.image_path = urllib.parse.unquote_plus(
-                                event['Records'][0]['s3']['object']['key'],
-                                encoding='utf-8'
-                                )
+                            event['Records'][0]['s3']['object']['key'],
+                            encoding='utf-8'
+                            )
 
         session = boto3.session.Session()
         self.response = session.client('s3').list_objects_v2(Bucket=self.input_bucket)
-        self.rekognition = session.client('rekognition')
         self.s3_resource = session.resource('s3')
 
-    def get_rekognition_labels(self) -> dict:
-        """Amazon Rekognitionからデータを取得する関数
-
-        Returns:
-            dict: 取得したRekognitionデータ
-
-        """
-
-        labels = self.rekognition.detect_faces(
-            Image={
-                "S3Object":
-                    {"Bucket": self.input_bucket,
-                    "Name": self.image_path}},
-            Attributes=['ALL']
-            )
-        return labels
+        rekognition = session.client('rekognition')
+        self.labels = rekognition.detect_faces(
+                            Image={
+                                "S3Object":
+                                    {"Bucket": self.input_bucket,
+                                    "Name": self.image_path}},
+                            Attributes=['ALL']
+                            )
 
     def get_s3_image(self, img_path: str) -> Image.Image:
         """s3から画像を取得する関数
