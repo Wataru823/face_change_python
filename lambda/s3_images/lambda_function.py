@@ -65,7 +65,9 @@ def draw_emoji(label: dict, output_emoji: Image.Image, emoji_image: Image.Image)
         label (dict): Rekognitionデータ
         output_emoji (Image.Image): 出力する画像
         emoji_image (Image.Image): 描画する際に用いる絵文字の画像
+
     """
+
     imgWidth, imgHeight = output_emoji.size
     box = label['BoundingBox']
     left = int(imgWidth * box['Left'])
