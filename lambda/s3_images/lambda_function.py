@@ -1,3 +1,10 @@
+"""lambdaで用いる関数
+
+input用のS3に画像がputされたというイベントが発生したら、
+元の画像と3つの描画された画像をoutput用のS3に保存する関数
+
+"""
+
 import io
 import os
 
