@@ -12,7 +12,7 @@ import io
 import boto3
 from PIL import Image, ImageDraw
 
-bucket_name = 'バケット名'
+bucket_name = 's3のバケット名'
 filename = 'images/face.jpg' # 顔画像のpath
 
 session = boto3.session.Session()

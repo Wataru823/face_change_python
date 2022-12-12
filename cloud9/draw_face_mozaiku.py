@@ -1,21 +1,9 @@
-"""
-rekognition.detect_facesで読み取った情報の例をfacedetails.txtに入れた。
-
-顔のモザイクではなく目のモザイクにする方法
-
-例えば、facedetails.txt (labelsの中身)のLandmarksのtypeにeyeLeftやeyeRightがあるから
-その位置から直線を決めて、顔の幅の値から目を隠す横幅を決める。
-縦幅は顔の高さの割合で決めたりする
-(pixelで指定すると画像の大きさに対応できないけどまあそれでもいい)
-
-(コード書くとき参考にしたサイト) https://hacknote.jp/archives/45652/
-"""
 import io
 
 import boto3
 from PIL import Image, ImageDraw
 
-bucket_name = 'rekognition-ikeda'
+bucket_name = 's3のバケット名'
 filename = 'face.jpg'
 
 session = boto3.session.Session()
